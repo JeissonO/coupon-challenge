@@ -42,7 +42,7 @@ public class ItemServiceImpl implements ItemServiceInterface {
 	}
 
 	public HashMap<String, Float> getItemsPrices(List<String> itemIdList) {
-		HashMap<String, Float> itemsPriceList = new HashMap<String, Float>();
+		HashMap<String, Float> itemsPriceList = new HashMap<>();
 		for (String item : itemIdList) {
 			try {		
 				Object response = getItemPrice(item);
@@ -62,7 +62,7 @@ public class ItemServiceImpl implements ItemServiceInterface {
 				couponConfigurationProperties.getTimeOut());
 	}
 
-	public List<String> calculate(Map<String, Float> items, Float amount) throws NotFoundException {
+	public List<String> calculate(Map<String, Float> items, Float amount){
 		List<String> buyItemsList = new ArrayList<>();
 		Float total = 0F;
 		if (items.size() < 1) {
@@ -81,10 +81,9 @@ public class ItemServiceImpl implements ItemServiceInterface {
 	}
 	
 	private HashMap<String, Float> sorfHashMap(HashMap<String, Float> itemsPriceList) {
-		HashMap<String, Float> sorftedMap = itemsPriceList.entrySet().stream()
+		return itemsPriceList.entrySet().stream()
 				.sorted((item1, item2) -> item1.getValue().compareTo(item2.getValue()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (entry1, entry2) -> entry1, LinkedHashMap::new));
-		return sorftedMap;
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (entry1, entry2) -> entry1, LinkedHashMap::new));		
 	}
 
 	private Float getPrice(Object response) throws JsonProcessingException, JSONException {

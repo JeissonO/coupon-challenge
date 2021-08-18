@@ -40,7 +40,7 @@ public class RestClientService {
 			HttpEntity<Object> httpEntity = null;
 
 			if (bodyRq != null) {
-				httpEntity = new HttpEntity<Object>(bodyRq, httpHeaders);
+				httpEntity = new HttpEntity<>(bodyRq, httpHeaders);
 			} else {
 				httpEntity = new HttpEntity<>(httpHeaders);
 			}

@@ -16,14 +16,13 @@
 	<description>Coupon API services to buy your favorite items</description>
 	<properties>
 		<java.version>11</java.version>
-		<springfox-version>2.7.0</springfox-version>		
+		<springfox-version>2.7.0</springfox-version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -51,8 +50,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>			
+			<artifactId>httpclient</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>			
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>

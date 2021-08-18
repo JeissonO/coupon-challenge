@@ -29,12 +29,12 @@ public class CouponServiceImpl implements CouponServiceInterface {
 
 	public ResponseEntity<Object> buy(CouponUseRq request){
 		CouponUseRs response = new CouponUseRs();
-		HashMap<String, Float> itemsPriceList = new HashMap<String, Float>();
+		HashMap<String, Float> itemsPriceList = new HashMap<>();
 		try {			
-			if(request.getItemIds().size()>0 && request.getAmount()> 0) {
+			if(!request.getItemIds().isEmpty() && request.getAmount()> 0) {
 				itemsPriceList = itemService.getItemsPrices(request.getItemIds());
 				List<String> itemsToBuy = itemService.calculate(itemsPriceList, request.getAmount());
-				if(itemsToBuy.size()>0) {					
+				if(!itemsToBuy.isEmpty()) {					
 					response.setItemIds(itemsToBuy);
 					response.setTotal(getTotalBill(itemsPriceList, itemsToBuy));
 				}else {

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -40,23 +39,19 @@ class BonusCouponApplicationTests {
 	private CouponApiController apiController;	
 	
 	
-	@Before
+	@org.junit.jupiter.api.BeforeEach
 	public void init() {
 		mockMvc = MockMvcBuilders.standaloneSetup(apiController).build();
 	}
 	
 	@Test
-	void contextLoads() {
-	}
-	
-	@Test
-	public void test_coupon_healthCheck() throws Exception {
+	void test_coupon_healthCheck() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/v1/coupon/health"))
 			.andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
 	}
 	
 	@Test
-	public void test_coupon_postCoupon() throws Exception {
+	void test_coupon_postCoupon() throws Exception {
 		CouponUseRq request = createTestResquest();		
 		ResponseEntity<Object> responseEntity = new ResponseEntity<>(HttpStatus.OK);
 		Mockito.when(mockService.buy(Mockito.any())).thenReturn(responseEntity);
