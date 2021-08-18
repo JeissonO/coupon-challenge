@@ -44,7 +44,7 @@ class BonusCouponItemServiceTest {
 		Object apiResponse = createApiResponse();
 		when(restClientService.invoke( Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any() , Mockito.any())).thenReturn(apiResponse);	
 		when(mapper.writeValueAsString(Mockito.any())).thenReturn(apiResponse.toString());
-		HashMap<String, Float> responseMap = itemServiceImpl.getItemsPrices(itemIdList);
+		Map<String, Float> responseMap = itemServiceImpl.getItemsPrices(itemIdList);
 		Assert.assertTrue("List", !responseMap.isEmpty());		
 	}
 	
@@ -53,7 +53,7 @@ class BonusCouponItemServiceTest {
 		List<String> itemIdList = createListToBuy();
 		Object apiResponse = createApiResponse();
 		when(restClientService.invoke( Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any() , Mockito.any())).thenReturn(apiResponse);	
-		HashMap<String, Float> responseMap = itemServiceImpl.getItemsPrices(itemIdList);
+		Map<String, Float> responseMap = itemServiceImpl.getItemsPrices(itemIdList);
 		Assert.assertTrue("EmptyList", responseMap.isEmpty());		
 	}
 	
@@ -62,7 +62,7 @@ class BonusCouponItemServiceTest {
 		Map<String, Float> items = createPrices();
 		Float amount = 500F;
 		List<String> itemsToBuyList = itemServiceImpl.calculate(items, amount);
-		Assert.assertTrue("Only can buy 2 items", itemsToBuyList.size()== 2);				
+		Assert.assertSame(2, itemsToBuyList.size());
 	}
 	
 	@Test

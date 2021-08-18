@@ -1,9 +1,7 @@
 package com.josorio.poc.coupon;
 
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import org.junit.Assert;
@@ -25,7 +23,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.josorio.poc.coupon.ctrl.CouponApiController;
 import com.josorio.poc.coupon.model.CouponUseRq;
-import com.josorio.poc.coupon.model.GeneralExceptionRs;
 import com.josorio.poc.coupon.service.CouponServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -39,7 +36,6 @@ class BonusCouponApplicationTests {
 	private CouponServiceImpl mockService;
 	@InjectMocks
 	private CouponApiController apiController;	
-	
 	
 	@org.junit.jupiter.api.BeforeEach
 	public void init() {
@@ -60,21 +56,6 @@ class BonusCouponApplicationTests {
 		ResponseEntity<Object> response = apiController.coupon(request);
 		Assert.assertSame(response.getStatusCode(), responseEntity.getStatusCode());
 	}
-	
-	@Test
-	void test_coupon_generalExceptionRs() throws Exception {
-		GeneralExceptionRs rs = new GeneralExceptionRs();
-		rs.setDetails("Details");
-		rs.setMessage("Message");
-		LocalDateTime localDate = LocalDateTime.now();
-		rs.setDate(localDate);
-		
-		Assert.assertSame("Details", rs.getDetails());
-		Assert.assertSame("Message", rs.getMessage());
-		Assert.assertSame(localDate, rs.getDate());
-	}
-	
-	
 	
 	private CouponUseRq createTestResquest() {
 		CouponUseRq request = new CouponUseRq();

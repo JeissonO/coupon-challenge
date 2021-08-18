@@ -45,7 +45,7 @@ class BonusCouponServiceTests {
 		ObjectMapper mapper = new ObjectMapper();
 		ResponseEntity<Object> response = couponService.buy(request);
 		CouponUseRs rs = mapper.convertValue(response.getBody(), CouponUseRs.class);
-		Assert.assertTrue("Valores Iguales", rs.getTotal() == 450F);
+		Assert.assertArrayEquals(new Float[] {450F}, new Float[] {rs.getTotal()});
 	}
 	
 	@Test

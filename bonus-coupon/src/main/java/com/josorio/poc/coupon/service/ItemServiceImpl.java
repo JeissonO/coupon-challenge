@@ -41,7 +41,7 @@ public class ItemServiceImpl implements ItemServiceInterface {
 		this.mapper = mapper;		
 	}
 
-	public HashMap<String, Float> getItemsPrices(List<String> itemIdList) {
+	public Map<String, Float> getItemsPrices(List<String> itemIdList) {
 		HashMap<String, Float> itemsPriceList = new HashMap<>();
 		for (String item : itemIdList) {
 			try {		

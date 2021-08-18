@@ -32,7 +32,7 @@ public class CouponServiceImpl implements CouponServiceInterface {
 		HashMap<String, Float> itemsPriceList = new HashMap<>();
 		try {			
 			if(!request.getItemIds().isEmpty() && request.getAmount()> 0) {
-				itemsPriceList = itemService.getItemsPrices(request.getItemIds());
+				itemsPriceList = (HashMap<String, Float>) itemService.getItemsPrices(request.getItemIds());
 				List<String> itemsToBuy = itemService.calculate(itemsPriceList, request.getAmount());
 				if(!itemsToBuy.isEmpty()) {					
 					response.setItemIds(itemsToBuy);
