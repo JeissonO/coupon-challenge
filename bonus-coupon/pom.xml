@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<springfox-version>2.7.0</springfox-version>
+		<jacoco.version>0.8.4</jacoco.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -55,7 +56,7 @@
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>			
+			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -77,6 +78,25 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

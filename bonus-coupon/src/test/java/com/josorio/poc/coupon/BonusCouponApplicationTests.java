@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.josorio.poc.coupon.ctrl.CouponApiController;
 import com.josorio.poc.coupon.model.CouponUseRq;
 import com.josorio.poc.coupon.service.CouponServiceImpl;
@@ -70,14 +69,6 @@ class BonusCouponApplicationTests {
 		request.setItemIds(intemsList );		
 		request.setAmount(500F);
 		return request;
-	}
-
-	public static String asJsonString(final Object obj) {
-		try {
-			return new ObjectMapper().writeValueAsString(obj);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 }
