@@ -1,0 +1,3 @@
+coupon:
+  item-api-endpoint: "https://api.mercadolibre.com/items/"
+  time-out: 5000
