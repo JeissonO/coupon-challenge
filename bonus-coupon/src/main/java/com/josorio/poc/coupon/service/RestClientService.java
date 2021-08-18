@@ -44,7 +44,6 @@ public class RestClientService {
 			} else {
 				httpEntity = new HttpEntity<>(httpHeaders);
 			}
-			log.info("callAPI {}{}",endpoint,path);
 			restTemplate.setRequestFactory(clientHttpRequestFactory(timeOut));			
 			ResponseEntity<Object> response = restTemplate.exchange(endpoint + path, httpMethod, httpEntity,
 					Object.class);
