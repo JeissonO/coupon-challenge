@@ -97,6 +97,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<excludes>
+						<exclude>com/josorio/poc/coupon/model/**</exclude>						
+					</excludes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

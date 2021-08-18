@@ -59,12 +59,28 @@ class BonusCouponServiceTests {
 	@Test
 	void test_coupon_postCoupon_not_found_2() throws Exception {
 		CouponUseRq request = createTestResquest();				
+		request.setAmount(0F);
+		HashMap<String, Float> prices = createPrices();
+		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);			
+		assertThrows(NotFoundException.class,() -> { couponService.buy(request);}); 
+	}
+	
+	@Test
+	void test_coupon_postCoupon_not_found_3() throws Exception {
+		CouponUseRq request = createTestResquest();				
+		request.setItemIds(null);					
+		assertThrows(Exception.class,() -> { couponService.buy(request);}); 
+	}
+	
+	@Test
+	void test_coupon_postCoupon_not_found_4() throws Exception {
+		CouponUseRq request = createTestResquest();				
 		HashMap<String, Float> prices = createPrices();
 		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);
 		List<String> listToBuy = new ArrayList<>();
 		when(mockService.calculate(Mockito.anyMap(), Mockito.anyFloat())).thenReturn(listToBuy);		
 		assertThrows(NotFoundException.class,() -> { couponService.buy(request);}); 
-	}
+	}	
 	
 	@Test
 	void test_coupon_postCoupon_server_exception() throws Exception {

@@ -20,7 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.josorio.poc.coupon.handler.NotFoundException;
-import com.josorio.poc.coupon.model.CouponUseRq;
 import com.josorio.poc.coupon.service.ItemServiceImpl;
 import com.josorio.poc.coupon.service.RestClientService;
 import com.josorio.poc.coupon.utilities.CouponConfigurationProperties;
@@ -92,17 +91,6 @@ class BonusCouponItemServiceTest {
 		prices.put("Item-2", 350F);
 		prices.put("Item-3", 400F);
 		return prices;
-	}
-
-	private CouponUseRq createTestResquest() {
-		CouponUseRq request = new CouponUseRq();
-		List<String> intemsList = new ArrayList<>();
-		intemsList.add("Item-1");
-		intemsList.add("Item-2");
-		intemsList.add("Item-3");
-		request.setItemIds(intemsList );		
-		request.setAmount(500F);
-		return request;
 	}
 	
 	public static String asJsonString(final Object obj) {
