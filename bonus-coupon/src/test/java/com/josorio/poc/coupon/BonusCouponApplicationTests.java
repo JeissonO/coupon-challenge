@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -37,10 +38,11 @@ class BonusCouponApplicationTests {
 	@InjectMocks
 	private CouponApiController apiController;	
 	
-	@org.junit.jupiter.api.BeforeEach
-	public void init() {
-		mockMvc = MockMvcBuilders.standaloneSetup(apiController).build();
-	}
+	@BeforeEach
+    public void setUp() {        
+        System.setProperty("API_ENDPOINT", "https://localhost.com");
+        mockMvc = MockMvcBuilders.standaloneSetup(apiController).build();
+    }
 	
 	@Test
 	void test_coupon_healthCheck() throws Exception {

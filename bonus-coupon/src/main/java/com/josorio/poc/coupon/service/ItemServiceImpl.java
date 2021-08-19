@@ -8,9 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -86,7 +85,7 @@ public class ItemServiceImpl implements ItemServiceInterface {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (entry1, entry2) -> entry1, LinkedHashMap::new));		
 	}
 
-	private Float getPrice(Object response) throws JsonProcessingException, JSONException {
+	private Float getPrice(Object response) throws JsonProcessingException{
 		String jResponse = mapper.writeValueAsString(response);
 		JSONObject json = new JSONObject(jResponse);
 		Double price = json.getDouble("price");
