@@ -55,7 +55,7 @@ resource "aws_ecs_task_definition" "microservice" {
                                     ],
                                     "Environment" :[
                                       { "Name"  : "AWS_XRAY_CONTEXT_MISSING","Value" : "LOG_ERROR" },        
-                                      { "Name"  : "ENV_APP","Value" : "${var.environment}" }
+                                      { "Name"  : "ENV_APP","Value" : "${var.environment}" },
                                       { "Name"  : "API_ENDPOINT","Value" : "${var.api_poc_endpoint}" }
                                     ],
                                     "MemoryReservation": ${var.microservice_memory_reservation},
