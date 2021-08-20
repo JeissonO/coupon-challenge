@@ -2,3 +2,6 @@ coupon:
   item-api-endpoint: ${API_ENDPOINT}
   #item-api-endpoint: api
   time-out: 5000
+server:
+  servlet:
+    context-path: /couponManagement
