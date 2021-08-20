@@ -127,7 +127,7 @@ Este proyecto esta construido con springboot por lo cual puede ejecutar directam
 
 La aplicación expone una api por el puerto 8080 en la siguiente URL:
 
-> http://localhost:8080/v1/coupon/
+> http://localhost:8080/couponManagement/v1/coupon/
 
 **Nota:** esa url aplica si desplegó en local con docker o como app springboot.
 

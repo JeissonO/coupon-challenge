@@ -11,13 +11,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/v1/coupon/health",
+					"raw": "http://localhost:8080/couponManagement/v1/coupon/health",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"couponManagement",
 						"v1",
 						"coupon",
 						"health"
@@ -41,13 +42,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/v1/coupon/",
+					"raw": "http://localhost:8080/couponManagement/v1/coupon/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"couponManagement",
 						"v1",
 						"coupon",
 						""
