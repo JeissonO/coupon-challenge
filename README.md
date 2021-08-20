@@ -20,7 +20,7 @@ Esta solución expone una funcionalidad en la cual recibe una lista de items que
 
 | Versión | Fecha | Responsable | Comentarios | 
 |--|--|--|--|
-| v.1.0.0 | jul 27, 2021 4:00 pm | [Jeisson Osorio]() |    Versión inicial |
+| v.1.0.0 | Agosto, 2021 | [Jeisson Osorio]() |    Versión inicial |
 
 ## Tecnologías utilizadas
 
