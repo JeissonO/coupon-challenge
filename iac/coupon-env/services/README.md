@@ -16,11 +16,9 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_api_proxy_balances"></a> [api\_proxy\_balances](#module\_api\_proxy\_balances) | ../../modules/application/apigateway/api-proxy |  |
-| <a name="module_ecs_balances_service"></a> [ecs\_balances\_service](#module\_ecs\_balances\_service) | ../../modules/application/ecs/service |  |
-| <a name="module_loggroups_log_sexporter"></a> [loggroups\_log\_sexporter](#module\_loggroups\_log\_sexporter) | ../../modules/custom/logs-exporter |  |
+| <a name="module_api_proxy_coupon"></a> [api\_proxy\_coupon](#module\_api\_proxy\_coupon) | ../../modules/application/apigateway/api-proxy |  |
+| <a name="module_ecs_coupon_service"></a> [ecs\_coupon\_service](#module\_ecs\_coupon\_service) | ../../modules/application/ecs/service |  |
 | <a name="module_parameters"></a> [parameters](#module\_parameters) | ../../parameters |  |
-| <a name="module_s3_poc_audit_logs"></a> [s3\_poc\_audit\_logs](#module\_s3\_poc\_audit\_logs) | ../../modules/storage/s3/logs |  |
 | <a name="module_vpc_link"></a> [vpc\_link](#module\_vpc\_link) | ../../modules/application/apigateway/vpc-link |  |
 
 ## Resources
