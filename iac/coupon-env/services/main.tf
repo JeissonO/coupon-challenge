@@ -35,7 +35,9 @@ module "api_proxy_coupon" {
   authorization_scopes    = ["coupon/v1"]
 }
 // FIN - Definicion de APIs
-
+variable "api_poc_endpoint" {
+  description = "Ingrese el valor de la variable API_ENDPOINT, la cual debe contener la api de integracion requerida por la solución"
+}
 // INICIO - ECS Service Definition
 module "ecs_coupon_service" {
   source             = "../../modules/application/ecs/service"
@@ -53,5 +55,6 @@ module "ecs_coupon_service" {
   ecs_cluster_name   = data.terraform_remote_state.resources.outputs.ecs_cluster_name
   sg_id              = [data.terraform_remote_state.resources.outputs.sg_ecs_id]
   private_subnet_id  = data.terraform_remote_state.networking.outputs.private_subnet_ids
+  api_poc_endpoint   = var.api_poc_endpoint
 }
 // FIN - ECS Service Definition

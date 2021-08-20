@@ -171,6 +171,11 @@ variable "period" {
   type        = string
   default     = "60"
 }
+
+variable "api_poc_endpoint" {
+  description = "endpoint de la api destino con la cual se integrara el servicio de coupon"
+  type        = string
+}
 locals {
   common_tags = (tomap({
     Environment  = var.environment
