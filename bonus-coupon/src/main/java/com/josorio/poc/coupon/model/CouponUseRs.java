@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 public class CouponUseRs {
-	
+
 	@JsonProperty("item_ids")
 	public List<String> itemIds;
 	@JsonProperty("total")

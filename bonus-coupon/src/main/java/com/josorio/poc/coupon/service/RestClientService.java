@@ -26,7 +26,7 @@ public class RestClientService {
 	private RestTemplate restTemplate;
 	@Autowired
 	HttpServletRequest request;
-	
+
 	public RestClientService(RestTemplate restTemplate, HttpServletRequest rq) {
 		this.restTemplate = restTemplate;
 		this.request = rq;
@@ -44,7 +44,7 @@ public class RestClientService {
 			} else {
 				httpEntity = new HttpEntity<>(httpHeaders);
 			}
-			restTemplate.setRequestFactory(clientHttpRequestFactory(timeOut));			
+			restTemplate.setRequestFactory(clientHttpRequestFactory(timeOut));
 			ResponseEntity<Object> response = restTemplate.exchange(endpoint + path, httpMethod, httpEntity,
 					Object.class);
 
@@ -54,7 +54,7 @@ public class RestClientService {
 
 		} catch (HttpClientErrorException e) {
 			log.error("HttpClientErrorException", e);
-			throw new ServiceException(e.getResponseBodyAsString());			
+			throw new ServiceException(e.getResponseBodyAsString());
 		} catch (Exception e) {
 			log.error("Exception", e);
 			throw new ServiceException("Invoke service error to: " + endpoint + path , e);

@@ -31,7 +31,7 @@ variable "microservice_loggroup" {
 variable "container_definitions" {
   description = "task definition file"
   default     = <<EOF
-              [    
+              [
                   {
                     "name": "redis",
                     "image": "redis",

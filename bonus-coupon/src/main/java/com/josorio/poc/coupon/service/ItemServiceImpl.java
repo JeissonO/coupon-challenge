@@ -33,17 +33,17 @@ public class ItemServiceImpl implements ItemServiceInterface {
 	private CouponConfigurationProperties couponConfigurationProperties;
 	@Autowired
 	private ObjectMapper mapper;
-	
+
 	public ItemServiceImpl(RestClientService restClientService,CouponConfigurationProperties configurationProperties, ObjectMapper  mapper) {
 		this.restClientService = restClientService;
 		this.couponConfigurationProperties = configurationProperties;
-		this.mapper = mapper;		
+		this.mapper = mapper;
 	}
 
 	public Map<String, Float> getItemsPrices(List<String> itemIdList) {
 		HashMap<String, Float> itemsPriceList = new HashMap<>();
 		for (String item : itemIdList) {
-			try {		
+			try {
 				Object response = getItemPrice(item);
 				itemsPriceList.put(item, getPrice(response));
 			} catch (Exception e) {
@@ -53,7 +53,7 @@ public class ItemServiceImpl implements ItemServiceInterface {
 		return sorfHashMap(itemsPriceList);
 	}
 
-	
+
 	@CacheEvict(value="price", key="#item")
 	public Object getItemPrice(String item) throws ServiceException {
 		return restClientService.invoke(null, HttpMethod.GET,
@@ -70,19 +70,19 @@ public class ItemServiceImpl implements ItemServiceInterface {
 			for (Entry<String, Float> item : items.entrySet()) {
 				if((total + item.getValue()) <= amount ) {
 					total += item.getValue();
-					buyItemsList.add(item.getKey());					
+					buyItemsList.add(item.getKey());
 				}else if((total + item.getValue()) > amount) {
 					break;
-				}				
+				}
 			}
 		}
 		return buyItemsList;
 	}
-	
+
 	private HashMap<String, Float> sorfHashMap(HashMap<String, Float> itemsPriceList) {
 		return itemsPriceList.entrySet().stream()
 				.sorted((item1, item2) -> item1.getValue().compareTo(item2.getValue()))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (entry1, entry2) -> entry1, LinkedHashMap::new));		
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (entry1, entry2) -> entry1, LinkedHashMap::new));
 	}
 
 	private Float getPrice(Object response) throws JsonProcessingException{

@@ -1,6 +1,6 @@
 # coupon-challenge
 
-Esta solución expone una funcionalidad en la cual recibe una lista de items que puedes estar relacionados a una lista de favoritos, y un monto asociado al valor que tienes disponible para realizar una compra para retornar una lista con la cantidad máxima de items que puedes adquirir con el monto indicado. 
+Esta solución expone una funcionalidad en la cual recibe una lista de items que puedes estar relacionados a una lista de favoritos, y un monto asociado al valor que tienes disponible para realizar una compra para retornar una lista con la cantidad máxima de items que puedes adquirir con el monto indicado.
 
 **Content**
 - [coupon-challenge](#coupon-challenge)
@@ -18,7 +18,7 @@ Esta solución expone una funcionalidad en la cual recibe una lista de items que
 
 ## Control de Cambios
 
-| Versión | Fecha | Responsable | Comentarios | 
+| Versión | Fecha | Responsable | Comentarios |
 |--|--|--|--|
 | v.1.0.0 | Agosto, 2021 | [Jeisson Osorio]() |    Versión inicial |
 
@@ -33,10 +33,10 @@ Esta solución esta desarrollada con Springboot y para utilizarla debes contar c
 ## Como correr el proyecto.
 
 * Garantizar que en el equipo en el cual se quiere validar la solucion cuente con maven y java 11
-* Realizar un checkout del repositorio. 
+* Realizar un checkout del repositorio.
 * Ubicarse en la ruta `coupon-challenge/bonus-coupon`
 
-### Configurar Variable de entorno 
+### Configurar Variable de entorno
 
 * Crear variable de entorno API_ENDPOINT.
    1. El proyecto realiza un integracion con una api externa la cual brida la informacion del costo de los productos que llegan en la lista. por tal motivo es necesario que el endpoint de esta api destino sea configurado en la variable de entorno $API_ENDPOINT.
@@ -60,7 +60,7 @@ coupon:
   1. Exponer método GET con la siguiente firma.
 
 > https://host:port/api/$ITEM_ID
-> 
+>
 > curl -X GET https://host:port/api/$ITEM_ID
 
 
@@ -78,12 +78,12 @@ coupon:
 ### Compilar el proyecto y generar el ejecutable
 
 * Ejecutar el siguiente comando maven en la ruta `coupon-challenge/bonus-coupon`
-  
+
 ```bash
     mvn clean package install
 ```
 
-### Validación de código estático 
+### Validación de código estático
 
 * Validación de código (Opcional): si cuenta con una instalación de Sonarqube o desea usar sonar cloud incluir en el comando anterior la publicación de las pruebas en sonar para que se realice la respectiva validación de código.
 
@@ -91,7 +91,7 @@ coupon:
     mvn clean package install && mvn sonar:sonar
 ```
 
-> El código actual del proyecto arroja el siguiente resultado con las quality gates default de [Sonarqube](https://www.sonarqube.org/). 
+> El código actual del proyecto arroja el siguiente resultado con las quality gates default de [Sonarqube](https://www.sonarqube.org/).
 
 ![Revision Sonar](img/sonar-scan.png "Revision de Sonarque")
 
@@ -102,9 +102,9 @@ coupon:
 ![Jacoco Report](img/jacoco-report.png "Jacoco Report")
 
 
-### Ejecución del proyecto  
+### Ejecución del proyecto
 
-Este proyecto esta construido con springboot por lo cual puede ejecutar directamente la aplicación como una app springboot sin embargo los pasos descritos a continuación son para contenerizar la aplicación utilizando Docker. 
+Este proyecto esta construido con springboot por lo cual puede ejecutar directamente la aplicación como una app springboot sin embargo los pasos descritos a continuación son para contenerizar la aplicación utilizando Docker.
 
 1. Garantizar que ya se hallan generado los binarios del proyecto en la capeta target (`coupon-challenge/bonus-coupon/target/`)
 2. Tener Docker instalado.
@@ -117,10 +117,10 @@ Este proyecto esta construido con springboot por lo cual puede ejecutar directam
 ```bash
   ## Correr container como daemon
     docker run -d -p 8080:8080 --name coupon -e API_ENDPOINT=$API_ENDPOINT coupon:latest
-  ## Correr con consola interactiva 
+  ## Correr con consola interactiva
     docker run -it -p 8080:8080 --name coupon -e API_ENDPOINT=$API_ENDPOINT coupon:latest
 ```
-> **Nota:** Tener en cuenta que en el comando anterior se asume que existe la variable de entorno ***$API_ENDPOINT*** y que el servicio esta utilizando la variable de entorno. En caso de que en el archivo ***application.yml*** se halla realizado la configuración del endpoint directo a la api destino, no es necesario enviar la variable de entorno en el comando de docker. 
+> **Nota:** Tener en cuenta que en el comando anterior se asume que existe la variable de entorno ***$API_ENDPOINT*** y que el servicio esta utilizando la variable de entorno. En caso de que en el archivo ***application.yml*** se halla realizado la configuración del endpoint directo a la api destino, no es necesario enviar la variable de entorno en el comando de docker.
 
 
 ### Probar el proyecto
@@ -137,7 +137,7 @@ Para probar la funcionalidad se debe enviar una petición POST con la siguiente 
 ```json
 {
     "item_ids" : ["MCO643695188","MCO475364594", "MCO539018277", "MCO641531650", "MCO475364594", "MCO643469624"],
-    "amount" : 1000000    
+    "amount" : 1000000
 }
 ```
 
@@ -169,21 +169,21 @@ Este ejercicio cuenta con una sección de aprovisionamiento de infraestructura c
 
 ### Orden de ejecución de módulos iac
 
-Para poder ejecutar lo modulo tiene que seguir previamente todas las directrices indicadas en el modulo de IAC adicionalmente requiere tener instalado terraform en la maquina desde la cual desea realizar el aprovisionamiento. 
+Para poder ejecutar lo modulo tiene que seguir previamente todas las directrices indicadas en el modulo de IAC adicionalmente requiere tener instalado terraform en la maquina desde la cual desea realizar el aprovisionamiento.
 
-1. En el modulo de red (`coupon-challenge/iac/coupon-env/networking`) ejecutar los siguientes comandos: 
+1. En el modulo de red (`coupon-challenge/iac/coupon-env/networking`) ejecutar los siguientes comandos:
 ```bash
 terraform init
 terraform workspace new dev
 terraform plan
-terraform apply 
+terraform apply
 ```
-2. En el modulo de recursos (`coupon-challenge/iac/coupon-env/resources`) ejecutar los siguientes comandos: 
+2. En el modulo de recursos (`coupon-challenge/iac/coupon-env/resources`) ejecutar los siguientes comandos:
 ```bash
 terraform init
 terraform workspace new dev
 terraform plan
-terraform apply 
+terraform apply
 ```
 
 > Nota: después de ejecutar el modulo de recursos se deben contemplar los siguientes puntos:
@@ -191,11 +191,11 @@ terraform apply
 - Realizar un push de la imagen docker generada del servicio al repositorio ECR creado en la cuenta de AWS antes de continuar con la ejecución del modulo de servicios.
 - Crear usuario en cognito para poder acceder al servicio que se publicara en apigateway
 
-3. En el modulo de servicios (`coupon-challenge/iac/coupon-env/services`) ejecutar los siguientes comandos: 
+3. En el modulo de servicios (`coupon-challenge/iac/coupon-env/services`) ejecutar los siguientes comandos:
 ```bash
 terraform init
 terraform workspace new dev
 terraform plan
-terraform apply 
+terraform apply
 ```
-> Esta ultima ejecución creara la API en la cual quedara expuesto el servicio y subirá el servicio de coupon en el cluster de ECS de acuerdo con la arquitectura reverenciada. 
+> Esta ultima ejecución creara la API en la cual quedara expuesto el servicio y subirá el servicio de coupon en el cluster de ECS de acuerdo con la arquitectura reverenciada.

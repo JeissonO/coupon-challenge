@@ -18,7 +18,7 @@ resource "aws_iam_role_policy" "ecs_execution_role_policy" {
   role   = aws_iam_role.ecs_execution_role.id
 }
 
-// Log Group 
+// Log Group
 resource "aws_cloudwatch_log_group" "log_name" {
   name              = "${var.environment}_${var.project}_${var.service_name}_log_group"
   retention_in_days = var.retention_in_days_logs
@@ -30,7 +30,7 @@ resource "aws_cloudwatch_log_group" "log_name" {
 resource "aws_ecs_task_definition" "microservice" {
   family                   = var.service_name
   container_definitions    = <<EOF
-                            [    
+                            [
                                 {
                                   "name": "xray-daemon",
                                   "image": "${var.xray_repository}",
@@ -54,7 +54,7 @@ resource "aws_ecs_task_definition" "microservice" {
                                         }
                                     ],
                                     "Environment" :[
-                                      { "Name"  : "AWS_XRAY_CONTEXT_MISSING","Value" : "LOG_ERROR" },        
+                                      { "Name"  : "AWS_XRAY_CONTEXT_MISSING","Value" : "LOG_ERROR" },
                                       { "Name"  : "ENV_APP","Value" : "${var.environment}" },
                                       { "Name"  : "API_ENDPOINT","Value" : "${var.api_poc_endpoint}" }
                                     ],

@@ -7,5 +7,3 @@ output "api_root_resource_id" {
 output "api_gateway_invoke_url" {
   value = aws_api_gateway_deployment.main.invoke_url
 }
-
-

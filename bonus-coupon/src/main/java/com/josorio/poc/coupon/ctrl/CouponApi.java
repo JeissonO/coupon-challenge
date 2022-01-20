@@ -15,13 +15,13 @@ import io.swagger.annotations.ApiResponses;
 
 @Api("Coupon")
 public interface CouponApi {
-	
+
 	@ApiOperation(value = "Health check of Coupon API", nickname = "health")
-	@ApiResponses(value = { @ApiResponse(code = 500, message = CouponConstants.SERVER_ERROR),			
+	@ApiResponses(value = { @ApiResponse(code = 500, message = CouponConstants.SERVER_ERROR),
 			@ApiResponse(code = 200, message = CouponConstants.TRN_SUCCESS) })
 	@GetMapping("/health")
 	ResponseEntity<Object> healthCheck();
-	
+
 	@ApiOperation(value = "Buy Items", nickname = "coupon")
 	@ApiResponses(value = { @ApiResponse(code = 500, message = CouponConstants.SERVER_ERROR),
 			@ApiResponse(code = 404, message = CouponConstants.NOT_FOUND),

@@ -4,7 +4,7 @@ En este modulo se cuenta con las definiciones asociadas a los parámetros y vari
 
 ### Control de Cambios
 
-| Versión | Fecha | Responsable | Comentarios | 
+| Versión | Fecha | Responsable | Comentarios |
 |--|--|--|--|
 | Versión actual (v.1.0.0) | Agosto 21, 2021| [Jeisson Osorio]() |   Versión Inicial |
 

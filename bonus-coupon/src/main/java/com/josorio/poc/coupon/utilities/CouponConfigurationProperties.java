@@ -11,5 +11,5 @@ import lombok.Data;
 public class CouponConfigurationProperties {
 
 	private String itemApiEndpoint;
-	private Integer timeOut;	
+	private Integer timeOut;
 }

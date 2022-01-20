@@ -2,7 +2,7 @@
   @Autor: jeisson.osoriob@gmail.com
   @Date: Agosto 2021
   @Organization: Coupon-Challenge
-  @Description: Template para la creacion de recursos de red  
+  @Description: Template para la creacion de recursos de red
   INFO: Validar uso de workspace para la implementacion de la presente plantilla
 **/
 module "parameters" {

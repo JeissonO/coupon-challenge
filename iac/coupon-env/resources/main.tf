@@ -2,14 +2,14 @@
   @Autor: jeisson.osoriob@gmail.com
   @Date: Agosto 2021
   @Organization: Coupon-Challenge
-  @Description: Template para la creacion de recursos de infraestructura  
+  @Description: Template para la creacion de recursos de infraestructura
   INFO: Validar uso de workspace para la implementacion de la presente plantilla
 **/
 
 module "parameters" {
   source = "../../parameters"
 }
-// -- INICIO Definicion de RepositoriosECR 
+// -- INICIO Definicion de RepositoriosECR
 module "ecr_coupon" {
   source          = "../../modules/application/ecr"
   repository_name = "coupon"
@@ -17,7 +17,7 @@ module "ecr_coupon" {
   organization    = module.parameters.organization
   project         = module.parameters.project
 }
-// -- FIN Definicion de RepositoriosECR 
+// -- FIN Definicion de RepositoriosECR
 
 // -- INICIO Definicion ECS (Cluster ECS y Security Group del cluster)
 module "sg_ecs" {

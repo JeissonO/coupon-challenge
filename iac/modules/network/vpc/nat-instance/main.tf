@@ -27,7 +27,7 @@ resource "aws_network_interface" "this" {
   description       = "ENI para NAT instance ${var.resource}"
   tags              = merge({ Name = "${var.environment}_${var.project}_${var.resource}_eni" }, local.common_tags, )
 }
-# AMI of the latest Amazon Linux 2 
+# AMI of the latest Amazon Linux 2
 data "aws_ami" "this" {
   most_recent = true
   owners      = ["amazon"]

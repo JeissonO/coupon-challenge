@@ -29,68 +29,68 @@ import com.josorio.poc.coupon.service.ItemServiceImpl;
 @SpringBootTest
 @AutoConfigureMockMvc
 class BonusCouponServiceTests {
-	
+
 	@Mock
 	private ItemServiceImpl mockService;
 	@InjectMocks
 	private CouponServiceImpl couponService;
-	
+
 	@Test
 	void test_coupon_postCoupon_ok() throws Exception {
-		CouponUseRq request = createTestResquest();				
+		CouponUseRq request = createTestResquest();
 		HashMap<String, Float> prices = createPrices();
 		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);
 		List<String> listToBuy = createListToBuy();
-		when(mockService.calculate(Mockito.anyMap(), Mockito.anyFloat())).thenReturn(listToBuy);		
+		when(mockService.calculate(Mockito.anyMap(), Mockito.anyFloat())).thenReturn(listToBuy);
 		ObjectMapper mapper = new ObjectMapper();
 		ResponseEntity<Object> response = couponService.buy(request);
 		CouponUseRs rs = mapper.convertValue(response.getBody(), CouponUseRs.class);
 		Assert.assertArrayEquals(new Float[] {450F}, new Float[] {rs.getTotal()});
 	}
-	
+
 	@Test
 	void test_coupon_postCoupon_not_found_1() throws Exception {
-		CouponUseRq request = createTestResquest();				
+		CouponUseRq request = createTestResquest();
 		HashMap<String, Float> prices = new HashMap<>();
-		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);				
-		assertThrows(NotFoundException.class,() -> { couponService.buy(request);}); 
+		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);
+		assertThrows(NotFoundException.class,() -> { couponService.buy(request);});
 	}
-	
+
 	@Test
 	void test_coupon_postCoupon_not_found_2() throws Exception {
-		CouponUseRq request = createTestResquest();				
+		CouponUseRq request = createTestResquest();
 		request.setAmount(0F);
 		HashMap<String, Float> prices = createPrices();
-		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);			
-		assertThrows(NotFoundException.class,() -> { couponService.buy(request);}); 
+		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);
+		assertThrows(NotFoundException.class,() -> { couponService.buy(request);});
 	}
-	
+
 	@Test
 	void test_coupon_postCoupon_not_found_3() throws Exception {
-		CouponUseRq request = createTestResquest();				
-		request.setItemIds(null);					
-		assertThrows(Exception.class,() -> { couponService.buy(request);}); 
+		CouponUseRq request = createTestResquest();
+		request.setItemIds(null);
+		assertThrows(Exception.class,() -> { couponService.buy(request);});
 	}
-	
+
 	@Test
 	void test_coupon_postCoupon_not_found_4() throws Exception {
-		CouponUseRq request = createTestResquest();				
+		CouponUseRq request = createTestResquest();
 		HashMap<String, Float> prices = createPrices();
 		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);
 		List<String> listToBuy = new ArrayList<>();
-		when(mockService.calculate(Mockito.anyMap(), Mockito.anyFloat())).thenReturn(listToBuy);		
-		assertThrows(NotFoundException.class,() -> { couponService.buy(request);}); 
-	}	
-	
+		when(mockService.calculate(Mockito.anyMap(), Mockito.anyFloat())).thenReturn(listToBuy);
+		assertThrows(NotFoundException.class,() -> { couponService.buy(request);});
+	}
+
 	@Test
 	void test_coupon_postCoupon_server_exception() throws Exception {
-		CouponUseRq request = createTestResquest();	
+		CouponUseRq request = createTestResquest();
 		request.setAmount(null);
-		HashMap<String, Float> prices = createPrices();		
-		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);			
-		assertThrows(Exception.class,() -> { couponService.buy(request);}); 
+		HashMap<String, Float> prices = createPrices();
+		when(mockService.getItemsPrices(Mockito.any())).thenReturn(prices);
+		assertThrows(Exception.class,() -> { couponService.buy(request);});
 	}
-	
+
 	private List<String> createListToBuy() {
 		List<String> toBuy = new ArrayList<>();
 		toBuy.add("Item-1");
@@ -112,11 +112,11 @@ class BonusCouponServiceTests {
 		intemsList.add("Item-1");
 		intemsList.add("Item-2");
 		intemsList.add("Item-3");
-		request.setItemIds(intemsList );		
+		request.setItemIds(intemsList );
 		request.setAmount(500F);
 		return request;
 	}
-	
+
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);

@@ -32,40 +32,40 @@ import com.josorio.poc.coupon.service.CouponServiceImpl;
 class BonusCouponApplicationTests {
 
 	@Autowired
-	private MockMvc mockMvc;	
+	private MockMvc mockMvc;
 	@Mock
 	private CouponServiceImpl mockService;
 	@InjectMocks
-	private CouponApiController apiController;	
-	
+	private CouponApiController apiController;
+
 	@BeforeEach
-    public void setUp() {        
+    public void setUp() {
         System.setProperty("API_ENDPOINT", "https://localhost.com");
         mockMvc = MockMvcBuilders.standaloneSetup(apiController).build();
     }
-	
+
 	@Test
 	void test_coupon_healthCheck() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/v1/coupon/health"))
 			.andExpect(MockMvcResultMatchers.status().is2xxSuccessful());
 	}
-	
+
 	@Test
 	void test_coupon_postCoupon() throws Exception {
-		CouponUseRq request = createTestResquest();		
+		CouponUseRq request = createTestResquest();
 		ResponseEntity<Object> responseEntity = new ResponseEntity<>(HttpStatus.OK);
 		Mockito.when(mockService.buy(Mockito.any())).thenReturn(responseEntity);
 		ResponseEntity<Object> response = apiController.coupon(request);
 		Assert.assertSame(response.getStatusCode(), responseEntity.getStatusCode());
 	}
-	
+
 	private CouponUseRq createTestResquest() {
 		CouponUseRq request = new CouponUseRq();
 		List<String> intemsList = new ArrayList<>();
 		intemsList.add("Item-1");
 		intemsList.add("Item-2");
 		intemsList.add("Item-3");
-		request.setItemIds(intemsList );		
+		request.setItemIds(intemsList );
 		request.setAmount(500F);
 		return request;
 	}

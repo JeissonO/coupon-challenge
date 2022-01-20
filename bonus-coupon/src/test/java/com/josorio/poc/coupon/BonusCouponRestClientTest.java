@@ -30,25 +30,25 @@ import com.josorio.poc.coupon.service.RestClientService;
 @SpringBootTest
 @AutoConfigureMockMvc
 class BonusCouponRestClientTest {
-	
+
 	@Mock
 	private RestTemplate restTemplate;
 	@Mock
 	private HttpServletRequest request;
 	@InjectMocks
 	private RestClientService restClientService;
-	
+
 	@Test
 	void test_invokeApi_empty() throws Exception {
 		ResponseEntity<Object> apiRs = new ResponseEntity<>(HttpStatus.OK);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
-		when(restTemplate.exchange("https://www.junit.com/item-1", HttpMethod.GET , httpEntity , Object.class)).thenReturn(apiRs );		
-		Object response = restClientService.invoke(null, HttpMethod.GET, "https://www.junit.com/", "item-1", 5000);		
+		when(restTemplate.exchange("https://www.junit.com/item-1", HttpMethod.GET , httpEntity , Object.class)).thenReturn(apiRs );
+		Object response = restClientService.invoke(null, HttpMethod.GET, "https://www.junit.com/", "item-1", 5000);
 		Assert.assertNull(response);
 	}
-	
+
 	@Test
 	void test_invokeApi_200() throws Exception {
 		String jsonRs = "{ \"id\": \"Item-1\", \"price\": 100  }" ;
@@ -56,33 +56,33 @@ class BonusCouponRestClientTest {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
-		when(restTemplate.exchange("https://www.junit.com/item-1", HttpMethod.GET , httpEntity , Object.class)).thenReturn(apiRs );		
-		Object response = restClientService.invoke(null, HttpMethod.GET, "https://www.junit.com/", "item-1", 5000);	
+		when(restTemplate.exchange("https://www.junit.com/item-1", HttpMethod.GET , httpEntity , Object.class)).thenReturn(apiRs );
+		Object response = restClientService.invoke(null, HttpMethod.GET, "https://www.junit.com/", "item-1", 5000);
 		JSONObject json = new JSONObject(response.toString());
 		Double price = json.getDouble("price");
-		Assert.assertArrayEquals( new Float[] {100F}, new Float[] { price.floatValue()});		
-	}	
-	
+		Assert.assertArrayEquals( new Float[] {100F}, new Float[] { price.floatValue()});
+	}
+
 	@Test
 	void test_invokeApi_serviceException() throws Exception {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);		
+		HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
 		when(restTemplate.exchange("https://www.junit.com/item-1", HttpMethod.GET , httpEntity , Object.class))
 			.thenThrow(new HttpClientErrorException(HttpStatus.BAD_REQUEST));
-		
-		assertThrows(ServiceException.class,() -> { restClientService.invoke(null, HttpMethod.GET, "https://www.junit.com/", "item-1", 5000);});		
+
+		assertThrows(ServiceException.class,() -> { restClientService.invoke(null, HttpMethod.GET, "https://www.junit.com/", "item-1", 5000);});
 	}
-	
+
 	@Test
 	void test_invokeApi_serviceException_2() throws Exception {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);		
+		HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
 		when(restTemplate.exchange("https://www.junit.com/item-1", HttpMethod.GET , httpEntity , Object.class))
 			.thenThrow(new RuntimeException());
-		
-		assertThrows(ServiceException.class,() -> { restClientService.invoke(null, HttpMethod.GET, "https://www.junit.com/", "item-1", 5000);});		
+
+		assertThrows(ServiceException.class,() -> { restClientService.invoke(null, HttpMethod.GET, "https://www.junit.com/", "item-1", 5000);});
 	}
 
 }

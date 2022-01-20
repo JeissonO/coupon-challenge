@@ -12,5 +12,5 @@ public class CouponUseRq {
 	@JsonProperty("item_ids")
 	public List<String> itemIds;
 	@JsonProperty("amount")
-	public Float amount;	
+	public Float amount;
 }

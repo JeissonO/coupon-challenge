@@ -24,5 +24,3 @@ locals {
   private_subnet_cidrs = lookup(local.context_variables[terraform.workspace], "private_subnet_cidrs", ["10.0.11.0/24", "10.0.12.0/24", "10.0.13.0/24"])
   allow_cidrs          = lookup(local.context_variables[terraform.workspace], "allow_cidrs", [""])
 }
-
-

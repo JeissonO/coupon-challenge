@@ -28,7 +28,7 @@ import com.josorio.poc.coupon.utilities.CouponConfigurationProperties;
 @SpringBootTest
 @AutoConfigureMockMvc
 class BonusCouponItemServiceTest {
-	
+
 	@Mock
 	private RestClientService restClientService;
 	@Mock
@@ -37,26 +37,26 @@ class BonusCouponItemServiceTest {
 	private ObjectMapper mapper;
 	@InjectMocks
 	private ItemServiceImpl itemServiceImpl;
-	
+
 	@Test
 	void test_items_getItemsPrices() throws Exception {
 		List<String> itemIdList = createListToBuy();
 		Object apiResponse = createApiResponse();
-		when(restClientService.invoke( Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any() , Mockito.any())).thenReturn(apiResponse);	
+		when(restClientService.invoke( Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any() , Mockito.any())).thenReturn(apiResponse);
 		when(mapper.writeValueAsString(Mockito.any())).thenReturn(apiResponse.toString());
 		Map<String, Float> responseMap = itemServiceImpl.getItemsPrices(itemIdList);
-		Assert.assertTrue("List", !responseMap.isEmpty());		
+		Assert.assertTrue("List", !responseMap.isEmpty());
 	}
-	
+
 	@Test
 	void test_items_getItemsPrices_error() throws Exception {
 		List<String> itemIdList = createListToBuy();
 		Object apiResponse = createApiResponse();
-		when(restClientService.invoke( Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any() , Mockito.any())).thenReturn(apiResponse);	
+		when(restClientService.invoke( Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any() , Mockito.any())).thenReturn(apiResponse);
 		Map<String, Float> responseMap = itemServiceImpl.getItemsPrices(itemIdList);
-		Assert.assertTrue("EmptyList", responseMap.isEmpty());		
+		Assert.assertTrue("EmptyList", responseMap.isEmpty());
 	}
-	
+
 	@Test
 	void test_items_calculate() throws Exception {
 		Map<String, Float> items = createPrices();
@@ -64,15 +64,15 @@ class BonusCouponItemServiceTest {
 		List<String> itemsToBuyList = itemServiceImpl.calculate(items, amount);
 		Assert.assertSame(2, itemsToBuyList.size());
 	}
-	
+
 	@Test
 	void test_items_calculate_error() throws Exception {
 		Map<String, Float> items = new HashMap<>();
-		Float amount = 500F; 
+		Float amount = 500F;
 		assertThrows(NotFoundException.class,() -> { itemServiceImpl.calculate(items, amount);});
 	}
 
-	
+
 	private Object createApiResponse() {
 		return "{ \"id\": \"Item-1\", \"price\": 100  }";
 	}
@@ -92,7 +92,7 @@ class BonusCouponItemServiceTest {
 		prices.put("Item-3", 400F);
 		return prices;
 	}
-	
+
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);
