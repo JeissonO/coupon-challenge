@@ -198,4 +198,4 @@ terraform workspace new dev
 terraform plan
 terraform apply
 ```
-> Esta ultima ejecución creara la API en la cual quedara expuesto el servicio y subirá el servicio de coupon en el cluster de ECS de acuerdo con la arquitectura reverenciada.
+> Esta ultima ejecución creara la API en la cual quedara expuesto el servicio y subirá el servicio de coupon en el cluster de ECS de acuerdo con la arquitectura referenciada.
